@@ -1,0 +1,11 @@
+using c++
+
+functions to be implement:
+	encrypt, decrypt,
+	generate_keypair,
+	set_public_key, set_private_key, set_relin_keys,
+	load_public_key, load_relin_keys,
+	display_config,
+	load_encrypted_value,
+
+relin(重新綫性化) key is one of eval_key
