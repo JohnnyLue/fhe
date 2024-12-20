@@ -1,6 +1,5 @@
 to compile:
-g++ fhe.cpp -o fhe.exe
-to compile the program.
+>> g++ fhe.cpp -o fhe.exe
 
 format:
-./fhe.exe [max value] [max multiply depth]
+>> ./fhe.exe [max value] [max multiply depth]
