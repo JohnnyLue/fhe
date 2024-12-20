@@ -1,0 +1,10 @@
+use:
+'''
+g++ fhe.cpp -o fhe.exe
+'''
+to compile the program.
+
+format:
+'''
+./fhe.exe [max value] [max multiply depth]
+'''
