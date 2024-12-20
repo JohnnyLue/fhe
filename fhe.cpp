@@ -76,11 +76,17 @@ class FHE {
 };
 
 ull cal(ull a, ull b, ull c) {
-    return a*a*a + 5*b + c;
+    return a*a*a + b*c + c;
 }
 
 int main(int argc, char** argv) {
-    FHE fhe(10000, 2);
+    ull maxInt = 1000;
+    int maxMulDepth = 3;
+    if (argc == 3) {
+        maxInt = atoi(argv[1]);
+        maxMulDepth = atoi(argv[2]);
+    }
+    FHE fhe = FHE(maxInt, maxMulDepth);
     bool success = fhe.keygen();
     if (!success) {
         cout << "Key generation failed." << endl;
@@ -93,10 +99,13 @@ int main(int argc, char** argv) {
     ull c1 = fhe.encrypt(p1);
     ull c2 = fhe.encrypt(p2);
     ull c3 = fhe.encrypt(p3);
-    cout << "values: " << p1 << ", " << p2 << ", " << p3 << endl;
-    cout << "Encrypted values: " << c1 << ", " << c2 << ", " << c3 << endl;
-    cout << "p1^3 + 5*p2 + p3: " << cal(p1, p2, p3) << endl;
-    cout << "HE result: " << fhe.decrypt(cal(c1, c2, c3)) << endl;
+    cout << "Values:" << endl;
+    cout << "p1: " << p1 << ", p2: " << p2 << ", p3: " << p3 << endl;
+    cout << "After ecrypt:" << endl;
+    cout << "c1: " << c1 << ", c2: " << c2 << ", c3: " << c3 << endl << endl;
+    cout << "p1^3 + p2*p3 + p3: " << cal(p1, p2, p3) << endl;
+    cout << "c1^3 + c2*c3 + c3: " << cal(c1, c2, c3);
+    cout << ", after decrypt: " << fhe.decrypt(cal(c1, c2, c3)) << endl;
 
     return 0;
 }
